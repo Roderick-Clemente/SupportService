@@ -6,6 +6,11 @@ import sys
 import ldclient
 from ldclient import Config as LdConfig
 
+# Add and initialize Datadog monitoring.
+if os.environ.get('DATADOG_HOST'):
+    from datadog import initialize, statsd
+    initialize(statsd_host=os.environ.get('DATADOG_HOST'))
+
 log = logging.getLogger()
 
 
@@ -168,6 +173,7 @@ def setup_ld_client(app):
     # LaunchDarkly Config
     # If $LD_RELAY_URL is set, client will be pointed to a relay instance.
     if "LD_RELAY_URL" in os.environ:
+        base_uri = os.environ.get("LD_RELAY_URL")
         config = LdConfig(
             sdk_key = app.config.LD_CLIENT_KEY,
             base_uri = os.environ.get("LD_RELAY_URL"),

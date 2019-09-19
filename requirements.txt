@@ -28,3 +28,6 @@ gunicorn==19.9.0
 
 # Docker-compose generator
 j2cli==0.3.10
+
+# Datadog
+datadog==0.30.0
