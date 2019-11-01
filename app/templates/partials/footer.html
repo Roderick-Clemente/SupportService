@@ -68,12 +68,12 @@
            renderChatbox();
        });
 
-       ldclient.on('change:show-widgets', function() {
+       ldclient.on('update:show-widgets', function() {
            console.log('this should change widgets')
            renderButton();
        });
 
-       ldclient.on('change', function() {
+       ldclient.on('update', function() {
            console.log('this should change')
            renderButton();
            renderChatbox();
